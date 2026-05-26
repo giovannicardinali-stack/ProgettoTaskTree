@@ -1,4 +1,4 @@
-package Entity;
+package org.example.progettotasktree.Entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
