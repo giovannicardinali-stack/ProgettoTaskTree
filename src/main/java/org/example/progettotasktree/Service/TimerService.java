@@ -9,19 +9,23 @@ import java.util.UUID;
 
 @Service
 public class TimerService {
-    private TimerRepository timerRepository;
+    private final TimerRepository timerRepository;
+
+    public TimerService(TimerRepository timerRepository) {
+        this.timerRepository = timerRepository;
+    }
 
     public UUID avvioTimer(int dipendente){
 
         Timer timer = timerRepository.findByDipendenteGiorno(dipendente, LocalDate.now()).orElse(null);
-        if(timer == null){
-            throw new RuntimeException();
+        if(timer != null){
+            throw new RuntimeException("Timer già avviato");
         }
 
-        Timer nuovoTimer = new Timer();
-        nuovoTimer.setDipendente(dipendente);
-        timerRepository.save(nuovoTimer);
-        return nuovoTimer.getId();
+        timer = new Timer();
+        timer.setDipendente(dipendente);
+        timerRepository.save(timer);
+        return timer.getId();
     }
 
     public void fermaTimer(int dipendente){
