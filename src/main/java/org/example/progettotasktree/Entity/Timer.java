@@ -14,14 +14,14 @@ public class Timer {
     @Id
     private UUID id;
     private int dipendente; //aggiungi poi dipendente
-    private LocalDate Giorno;
+    private LocalDate giorno;
     private LocalTime oraInizio;
     private LocalTime oraFine;
 
     public Timer() {
         this.id = UUID.randomUUID();
         this.dipendente = 0;
-        this.Giorno = LocalDate.now();
+        this.giorno = LocalDate.now();
         this.oraInizio = LocalTime.now();
     }
 
@@ -42,12 +42,16 @@ public class Timer {
         return dipendente;
     }
     public LocalDate getGiorno(){
-        return Giorno;
+        return this.giorno;
     }
     public LocalTime getOraInizio(){
         return oraInizio;
     }
     public LocalTime getOraFine(){
         return oraFine;
+    }
+
+    public String toString(){
+        return this.dipendente + " " + this.giorno + " " + this.oraInizio + " " + this.oraFine;
     }
 }
